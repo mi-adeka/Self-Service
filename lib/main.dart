@@ -1,13 +1,15 @@
 
 import 'dart:async';
 import 'dart:ui';
+import 'package:fct_irs/pages/change_password.dart';
+import 'package:fct_irs/pages/verify_tcc.dart';
 import 'package:fct_irs/widget/navigation_drawer_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fct_irs/pages/login.dart';
 
 void main() {
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent
   ));
   runApp(MyApp());
@@ -22,7 +24,6 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
 
       theme: ThemeData(
-
         primarySwatch: Colors.green,
       ),
       home: SplashScreen(),
@@ -49,7 +50,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
 
     super.initState();
-    Timer(Duration(seconds: 10),
+    Timer(const Duration(seconds: 10),
             ()=>Navigator.pushReplacement(context,
             MaterialPageRoute(builder:
                 (context) =>
@@ -82,7 +83,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   height: 200.0,
                   width: 200.0,
                 ),
-                Text("Welcome to\n FCT-IRS Self Service",textAlign:TextAlign.center,
+                const Text("Welcome to\n FCT-IRS Self Service",textAlign:TextAlign.center,
                   style: TextStyle(
                     color: Colors.green,
                     fontWeight: FontWeight.bold,

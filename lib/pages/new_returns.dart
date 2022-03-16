@@ -1,32 +1,30 @@
-import 'package:fct_irs/widget/button_widget.dart';
+import 'package:fct_irs/pages/file_return.dart';
 import 'package:fct_irs/widget/navigation_drawer_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:fct_irs/main.dart';
 
 void main() {
   runApp(MaterialApp(
-    home: Register(),
+    home: NewReturns(),
   ));
 }
 
 //Login Starts
-class Register extends StatefulWidget {
+class NewReturns extends StatefulWidget {
   @override
   _State createState() => _State();
 }
 
-class _State extends State<Register> {
-  TextEditingController tinController = TextEditingController();
+class _State extends State<NewReturns> {
   TextEditingController dateController = TextEditingController();
-  String errorText = '';
+  TextEditingController yearController = TextEditingController();
   String date = '';
+  String year = '';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        //drawer: NavigationDrawerWidget(),
+        drawer: NavigationDrawerWidget(),
         appBar: AppBar(
-          automaticallyImplyLeading: false,
           title: Text('FCT-IRS'),
         ),
         body: Padding(
@@ -37,59 +35,59 @@ class _State extends State<Register> {
                     alignment: Alignment.centerLeft,
                     padding: EdgeInsets.all(10),
                     child: Text(
-                      'Register',
+                      'New Returns',
                       style: TextStyle(
                           color: Colors.green,
                           fontWeight: FontWeight.w500,
                           fontSize: 30),
-                    )
-                ),
+                    )),
                 Container(
-                    alignment: Alignment.centerLeft,
-                    padding: EdgeInsets.all(10),
-                    child: Text(
-                      'Sign in',
-                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-                    )
-                ),
-                Container(
-                  padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                  padding: EdgeInsets.all(10),
                   child: TextField(
                     controller: dateController,
+                    onChanged: (value) => setState(() => this.date = value),
+                    onSubmitted: (value) =>
+                        setState(() => this.date = value),
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
-                      labelText: 'Date of Incorporation or Date of Birth',
+                      labelText: 'AssessmentDate',
                     ),
                   ),
                 ),
                 Container(
                   padding: EdgeInsets.all(10),
                   child: TextField(
-                    controller: tinController,
+                    controller: yearController,
+                    onChanged: (value) => setState(() => this.year = value),
+                    onSubmitted: (value) =>
+                        setState(() => this.year = value),
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
-                      labelText: 'TIN',
+                      labelText: 'AssessmentYear*',
                     ),
                   ),
                 ),
                 Container(
                     height: 50,
-                    margin: EdgeInsets.fromLTRB(0, 30, 0, 0),
+                    margin: EdgeInsets.fromLTRB(0, 40, 0, 0),
                     padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
                     child: RaisedButton(
                       textColor: Colors.white,
                       color: Colors.green,
-                      child: Text('continue'),
-                      //call the API for the login logic
+                      child: Text('Generate Returns Ref. Number'),
+                      //call the API for the retrieve eTCC logic
                       onPressed: () {
-                        print('Date: ${dateController.text}');
-                        print('TIN: ${tinController.text}');
+                        // if(dateController.text.isEmpty || yearController.text.isEmpty) {
+                        //   print('Date and Year is required');
+                        // } else {
+                        //   print('Date: ${date}');
+                        //   print('Year: ${year}');
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => FileReturn()));
+                        // }
                       },
-                    )
-                ),
+                    )),
               ],
-            )
-        )
-    );
+            )));
   }
-} //Login Ends
+} // Retrieve eTCC Ends

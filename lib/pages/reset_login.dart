@@ -1,25 +1,25 @@
-import 'package:fct_irs/widget/button_widget.dart';
+import 'package:fct_irs/pages/register.dart';
 import 'package:fct_irs/widget/navigation_drawer_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:fct_irs/main.dart';
 
 void main() {
   runApp(MaterialApp(
-    home: Register(),
+    home: ResetLogin(),
   ));
 }
 
 //Login Starts
-class Register extends StatefulWidget {
+class ResetLogin extends StatefulWidget {
   @override
   _State createState() => _State();
 }
 
-class _State extends State<Register> {
-  TextEditingController tinController = TextEditingController();
+class _State extends State<ResetLogin> {
   TextEditingController dateController = TextEditingController();
-  String errorText = '';
-  String date = '';
+  TextEditingController tinController = TextEditingController();
+  String password = '';
+
 
   @override
   Widget build(BuildContext context) {
@@ -37,23 +37,21 @@ class _State extends State<Register> {
                     alignment: Alignment.centerLeft,
                     padding: EdgeInsets.all(10),
                     child: Text(
-                      'Register',
+                      'Resend Login Details',
                       style: TextStyle(
                           color: Colors.green,
                           fontWeight: FontWeight.w500,
                           fontSize: 30),
-                    )
-                ),
+                    )),
                 Container(
                     alignment: Alignment.centerLeft,
                     padding: EdgeInsets.all(10),
                     child: Text(
-                      'Sign in',
-                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-                    )
-                ),
+                      'Please enter your credentials to resend your login details',
+                      style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
+                    )),
                 Container(
-                  padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                  padding: EdgeInsets.all(10),
                   child: TextField(
                     controller: dateController,
                     decoration: InputDecoration(
@@ -63,7 +61,7 @@ class _State extends State<Register> {
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.all(10),
+                  padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
                   child: TextField(
                     controller: tinController,
                     decoration: InputDecoration(
@@ -74,22 +72,19 @@ class _State extends State<Register> {
                 ),
                 Container(
                     height: 50,
-                    margin: EdgeInsets.fromLTRB(0, 30, 0, 0),
+                    margin: EdgeInsets.fromLTRB(0, 40, 0, 0),
                     padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
                     child: RaisedButton(
                       textColor: Colors.white,
                       color: Colors.green,
-                      child: Text('continue'),
+                      child: Text('Send Email'),
                       //call the API for the login logic
                       onPressed: () {
-                        print('Date: ${dateController.text}');
-                        print('TIN: ${tinController.text}');
+                        print('Date of Birth: ${dateController.text}');
+                        print('TIN: ${password}');
                       },
-                    )
-                ),
+                    )),
               ],
-            )
-        )
-    );
+            )));
   }
 } //Login Ends

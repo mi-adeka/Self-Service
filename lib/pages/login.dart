@@ -1,7 +1,7 @@
+import 'package:fct_irs/pages/dashboard.dart';
 import 'package:fct_irs/pages/register.dart';
-import 'package:fct_irs/widget/navigation_drawer_widget.dart';
+import 'package:fct_irs/pages/reset_login.dart';
 import 'package:flutter/material.dart';
-import 'package:fct_irs/main.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -25,8 +25,9 @@ class _State extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: NavigationDrawerWidget(),
+        //drawer: NavigationDrawerWidget(),
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           title: Text('FCT-IRS'),
         ),
         body: Padding(
@@ -34,9 +35,9 @@ class _State extends State<Login> {
             child: ListView(
               children: <Widget>[
                 Container(
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.all(10),
-                    child: Text(
+                    alignment: Alignment.centerLeft,
+                    padding: const EdgeInsets.all(10),
+                    child: const Text(
                       'Login',
                       style: TextStyle(
                           color: Colors.green,
@@ -44,11 +45,12 @@ class _State extends State<Login> {
                           fontSize: 30),
                     )),
                 Container(
-                    alignment: Alignment.center,
+                    alignment: Alignment.centerLeft,
                     padding: EdgeInsets.all(10),
-                    child: Text(
+                    child: const Text(
                       'Sign in',
-                      style: TextStyle(fontSize: 20),
+                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+
                     )),
                 Container(
                   padding: EdgeInsets.all(10),
@@ -93,6 +95,8 @@ class _State extends State<Login> {
                 FlatButton(
                   onPressed: () {
                     //forgot password screen
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => ResetLogin()));
                   },
                   textColor: Colors.green,
                   child: Text('Click here to reset and resend login details>>'),
@@ -108,6 +112,8 @@ class _State extends State<Login> {
                       onPressed: () {
                         print('TIN: ${tinController.text}');
                         print('Password: ${password}');
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => Dashboard()));
                       },
                     )),
                 Container(
